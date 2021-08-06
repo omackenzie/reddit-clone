@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'posts/view_post.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <!-- POST -->
+        <div class="post-container">
+            <h1 class="post-title">{{ post.title }}</h1>
+            <p class="post-text">{{ post.post_text }}</p>
+        </div>
+
+        <!-- CREATE COMMENT -->
+        <div class="create-comment">
+            <form method="post" action="{% url 'create_comment' post.id %}">
+                {% csrf_token %}
+                <input type="text" name="text" class="comment-text" placeholder="Create a Comment">
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+
+        <!-- VIEW COMMENTS -->
+        <div class="comments-view">
+            {% for comment in comments %}
+                <div class="comment">
+                    <small>{{ comment.author }}</small>
+                    <p>{{ comment.text }}</p>
+                    <div class="reply-section">
+                        <small><i class="far fa-comment-dots"></i> Reply</small>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

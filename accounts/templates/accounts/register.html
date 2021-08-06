@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'accounts/general.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="form-container">
+            <h1>Register</h1>
+            <form method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Username" required/>
+                <input type="password" name="password1" placeholder="Password" required/>
+                <input type="password" name="password2" placeholder="Password confirmation" required/>
+
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <p class="error-message">{{ error|escape }}</p>
+                    {% endfor %}
+                {% endfor %}
+                <button class="submit-button" type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

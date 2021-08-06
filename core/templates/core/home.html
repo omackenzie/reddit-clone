@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'core/home.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <!-- CREATE POST -->
+    <div class="create-container">
+        <h2>Create a Post:</h2>
+        <a href="{% url 'create_post' %}">+</a>
+    </div>
+
+    <!-- POSTS -->
+    <div class="posts-container">
+        <h1 class="title">Latest Posts</h1>
+        <div class="posts-list">
+            {% for post in posts %}
+                <div class="post">
+                    <div class="vote-section">
+                        <button value="1" name="value" type="submit">
+                            <i class="far fa-thumbs-up"></i>
+                        </button>
+                        <p>1</p>
+                        <button value="-1" name="value" type="submit">
+                            <i class="far fa-thumbs-down"></i>
+                        </button>
+                    </div>
+                    <div class="post-body">
+                        <a href="{% url 'view_post' post.id %}" class="post-title">{{ post.title }}</a>
+                        <p class="post-info">
+                            <span class="subreddit">r/{{ post.subreddit }}</span>
+                            Posted by u/{{ post.user }} {{ post.time_since_upload }}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

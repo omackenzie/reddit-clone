@@ -1,0 +1,52 @@
+body {
+    background: #dae0e6;
+}
+
+.container {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto 0 auto;
+    padding: 20px;
+    width: 600px;
+    max-width: 100%;
+}
+
+.post-text {
+    padding: 20px 0;
+}
+
+.post-title {
+    text-align: center;
+}
+
+.comment-text {
+    padding: 10px 20px;
+    width: 70%;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    width: 20%;
+    background: #ff4500;
+    color: #fff;
+    border: none;
+}
+
+.create-comment {
+    margin: 20px 0;
+}
+
+.comment {
+    margin: 10px 0;
+    padding: 5px;
+    border: 1px solid #eeeeee;
+}
+
+small {
+    color: #787C7E;
+}
+
+.reply-section {
+    cursor: pointer;
+}

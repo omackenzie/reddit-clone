@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    {% endblock %}
+    {% load static %}
+    <script src="{% static 'fontawesome_free/js/all.min.js' %}"></script>
+
+    <meta charset="UTF-8">
+    <title>Reddit Clone</title>
+</head>
+<body>
+<!-- HEADER -->
+<div class="header">
+    <a href="/" class="header-title">reddit clone</a>
+
+    <input class="search-bar" type="text" placeholder="Search" />
+    <div class="registration">
+        {% if user.is_authenticated %}
+            <div class="profile">
+                {% load static %}
+                <img alt="User Icon" src="{% static 'user.svg' %}"/>
+                <p>{{ user }}</p>
+            </div>
+            <a class="login-button" href="{% url 'logout' %}?next={{ request.path }}">Log Out</a>
+        {% else %}
+            <a class="login-button" href="{% url 'login' %}?next={{ request.path }}">Log In</a>
+            <a class="register-button" href="{% url 'register' %}?next={{ request.path }}">Sign Up</a>
+        {% endif %}
+    </div>
+</div>
+
+{% block content %}
+{% endblock %}
+</body>
+</html>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap');
+
+    * {
+        font-family: 'Nunito Sans', Arial, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    p,
+    a,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 0;
+    }
+
+    .header {
+        background: #fff;
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .header-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: #000;
+    }
+
+    .search-bar {
+        background: #eeeeee;
+        width: 100%;
+        max-width: 690px;
+        padding: 4px 10px;
+        margin: 0 10px;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+    }
+
+    .registration {
+        display: flex;
+        padding-right: 10px;
+    }
+
+    .profile {
+        display: flex;
+        margin-right: 20px;
+    }
+
+    .profile img {
+        width: 20px;
+        margin-right: 6px;
+    }
+
+    .profile p {
+        line-height: 2;
+    }
+
+    .login-button {
+        padding: 5px 15px;
+        border: 2px solid #0079d3;
+        border-radius: 20px;
+        color: #0079d3;
+        font-weight: bold;
+        text-decoration: none;
+        margin-right: 6px;
+    }
+
+    .register-button {
+        padding: 5px 15px;
+        border-radius: 20px;
+        background: #0079d3;
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+    }
+</style>
